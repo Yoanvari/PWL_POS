@@ -3,6 +3,7 @@
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\UserController;
+use App\Models\KategoriModel;
 use App\Models\UserModel;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,10 @@ Route::post('/user/tambah_simpan', [UserController::class, 'tambah_simpan']);
 Route::get('/user/ubah/{id}', [UserController::class, 'ubah']);
 Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan']);
 Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);
+Route::get('/kategori', [KategoriController::class, 'index']);
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/kategori/create', [KategoriController::class, 'create']);
+Route::post('/kategori', [KategoriController::class, 'store']);
+Route::get('/kategori/edit/{kategori_id}', [KategoriController::class, 'edit'])->name('kategori.edit');
+Route::put('/kategori/{kategori_id}', [KategoriController::class, 'update'])->name('kategori.update');
+Route::delete('/kategori/{kategori_id}', [KategoriController::class, 'delete'])->name('kategori.delete');
