@@ -2,23 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class LevelController extends Controller
 {
-    public function index()
+    public function index(LevelDataTable $dataTable)
     {
-        DB::insert('insert into m_level(level_kode, level_nama, created_at) value(?,?,?)', ['cus', 'pelanggan', now()]);
-        return 'insert data baru berhasil';
+        return $dataTable->render('level.index');
+    }
 
-        // $row = DB::update('update m_level set level_nama = ? where level_kode = ?', ['Customer', 'CUS']);
-        // return 'Update data berhasil, jumlah data yang diupdate: ' . $row . 'baris';
+    public function create(): View
+    {
+        return view('level.create');
+    }
 
-        // $row = DB::delete('delete from m_level where level_kode = ?', ['CUS']);
-        // return 'Delete data berhasil, jumlah data yang dihapus: ' . $row . ' baris';
+    public function store(Request $request): RedirectResponse
+    {
+        $validated = $request->validate();
 
-        // $data = DB::select('select * from m_level');
-        // return view('level', ['data' => $data]);
+        $validated = $request->safe()->only(['level_id', 'level_kode', 'level_nama']);
+        $validated = $request->safe()->except(['level_id', 'level_kode', 'level_nama']);
+
+        return redirect('/user');
     }
 }

@@ -29,4 +29,24 @@
             </form>
         </div>
     </div>
+
+    <label for="kategori_kode">Kode kategori</label>
+    <input id="kategori_kode"
+    type="text"
+    name="kategori_kode"
+    class="@error('kategori_kode') is-invalid @enderror">
+
+    @error('kategori_kode')
+        <div class="alert alert-danger">{{ $massage }}</div>
+    @enderror
+
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 @endsection

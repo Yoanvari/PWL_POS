@@ -24,50 +24,51 @@ class KategoriController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        KategoriModel::create([
-            'kategori_kode' => $request->kodeKategori,
-            'kategori_nama' => $request->namaKategori,
-        ]);
-        return redirect('/kategori');
-    }
+        $validated = $request->validate();
 
-    public function edit(int $kategori_id)
-    {
-        $kategori = KategoriModel::findOrFail($kategori_id);
-
-        return view('kategori.edit', compact('kategori'));
-    }
-
-    public function update(Request $request, int $kategori_id)
-    {
-        $validatedData = $request->validate([
-            'kodeKategori' => 'required|string',
-            'namaKategori' => 'required|string',
-        ]);
-
-        $kategori = KategoriModel::findOrFail($kategori_id);
-        $kategori->kategori_kode = $validatedData['kodeKategori'];
-        $kategori->kategori_nama = $validatedData['namaKategori'];
-        $kategori->save();
+        $validated = $request->safe()->only(['kategori_kode', 'kategori_nama']);
+        $validated = $request->safe()->except(['kategori_kode', 'kategori_nama']);
 
         return redirect('/kategori');
     }
 
-    public function delete(Request $request, $kategori_id)
-    {
-        // Temukan kategori berdasarkan ID
-        $kategori = KategoriModel::find($kategori_id);
+    // public function edit(int $kategori_id)
+    // {
+    //     $kategori = KategoriModel::findOrFail($kategori_id);
 
-        // Periksa apakah kategori ditemukan
-        if (!$kategori) {
-            // Jika tidak ditemukan, kirimkan respons error
-            return response()->json(['message' => 'Kategori tidak ditemukan'], 404);
-        }
+    //     return view('kategori.edit', compact('kategori'));
+    // }
 
-        // Lakukan penghapusan kategori
-        $kategori->delete();
+    // public function update(Request $request, int $kategori_id)
+    // {
+    //     $validatedData = $request->validate([
+    //         'kodeKategori' => 'required|string',
+    //         'namaKategori' => 'required|string',
+    //     ]);
 
-        // Kirimkan respons berhasil
-        return response()->json(['message' => 'Kategori berhasil dihapus'], 200);
-    }
+    //     $kategori = KategoriModel::findOrFail($kategori_id);
+    //     $kategori->kategori_kode = $validatedData['kodeKategori'];
+    //     $kategori->kategori_nama = $validatedData['namaKategori'];
+    //     $kategori->save();
+
+    //     return redirect('/kategori');
+    // }
+
+    // public function delete(Request $request, $kategori_id)
+    // {
+    //     // Temukan kategori berdasarkan ID
+    //     $kategori = KategoriModel::find($kategori_id);
+
+    //     // Periksa apakah kategori ditemukan
+    //     if (!$kategori) {
+    //         // Jika tidak ditemukan, kirimkan respons error
+    //         return response()->json(['message' => 'Kategori tidak ditemukan'], 404);
+    //     }
+
+    //     // Lakukan penghapusan kategori
+    //     $kategori->delete();
+
+    //     // Kirimkan respons berhasil
+    //     return response()->json(['message' => 'Kategori berhasil dihapus'], 200);
+    // }
 }
