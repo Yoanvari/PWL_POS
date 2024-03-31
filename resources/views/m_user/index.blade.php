@@ -1,5 +1,10 @@
 @extends('m_user/template')
 @section('content')
+<style>
+    * {
+        box-sizing: content-box;
+    }
+</style>
 <div class="row mt-5 mb-5">
     <div class="col-lg-12 margin-tb">
         <div class="float-left">
@@ -22,7 +27,7 @@
         <td class="font-weight-bold text-center">Username</td>
         <td class="font-weight-bold text-center">Nama</td>
         <td class="font-weight-bold text-center">Password</td>
-        <td class="font-weight-bold text-center">Actions</td>
+        <td class="font-weight-bold text-center" style="width: 300px">Actions</td>
     </tr>
     @foreach ($useri as $m_user)
         <tr>
