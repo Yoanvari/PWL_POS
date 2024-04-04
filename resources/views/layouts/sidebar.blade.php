@@ -26,7 +26,7 @@
         <li class="nav-header">Data Pengguna</li>
         <li class="nav-item">
             <a href="{{ url('/level') }}" class="nav-link {{ ($activeMenu == 'level')? 'active' : '' }} ">
-                <i class="nav-icon fas fa-layer-ground"></i>
+                <i class="nav-icon fas fa-layer-group"></i>
                 <p>Level User</p>
             </a>
         </li>
@@ -58,7 +58,7 @@
         </li>
         <li class="nav-item">
             <a href="{{ url('/penjualan') }}" class="nav-link {{ ($activeMenu == 'penjualan')? 'active' : '' }} ">
-                <i class="nav-icon fas fa-cash-refister"></i>
+                <i class="nav-icon fas fa-cash-register"></i>
                 <p>Transaksi Penjualan</p>
             </a>
         </li>
