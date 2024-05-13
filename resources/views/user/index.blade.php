@@ -35,9 +35,10 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Username</th>
                         <th>Nama</th>
                         <th>Level</th>
-                        <th>Pengguna</th>
+                        <th>Foto</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -85,10 +86,21 @@
                     orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
                     searchable: false // searchable: true, jika ingin kolom ini bisa dicari
                     },{
-                    data: "aksi", 
-                    className: "",
-                    orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
-                    searchable: false // searchable: true, jika ingin kolom ini bisa dicari
+                        data: "image",
+                        orderable: false,
+                        searchable: false,
+                        render: function(data, type, row) {
+                            if (data !== 'http://127.0.0.1:8000/storage/posts') {
+                                return '<img src="' + data + '" width="100">';
+                            } else {
+                                return '';
+                            }
+                        }
+                    },{
+                        data: "aksi", 
+                        className: "",
+                        orderable: false, // orderable: true, jika ingin kolom ini bisa diurutkan
+                        searchable: false // searchable: true, jika ingin kolom ini bisa dicari
                     }
                 ]
             });
