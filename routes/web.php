@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\FileRenameController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\ManagerController;
@@ -32,6 +34,12 @@ use Laravel\Ui\AuthCommand;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/file-upload', [FileUploadController::class, 'fileUpload']);
+Route::post('/file-upload', [FileUploadController::class, 'prosesfileUpload']);
+
+Route::get('/file-upload-rename', [FileRenameController::class, 'fileUploadRename']);
+Route::post('/file-upload-rename', [FileRenameController::class, 'prosesfileUploadRename']);
+
 
 // Route::get('/kategori', [KategoriController::class, 'index']);
 // Route::get('/user', [UserController::class, 'index']);
